@@ -7,19 +7,19 @@
 		<script>
 			// getUserMedia only works over https in Chrome 47+, so we redirect to https. Also notify user if running from file.
 			if (window.location.protocol == "file:") {
-				alert("You seem to be running this example directly from a file. Note that these examples only work when served from a server or localhost due to canvas cross-domain restrictions.");
+				// alert("You seem to be running this example directly from a file. Note that these examples only work when served from a server or localhost due to canvas cross-domain restrictions.");
 			} else if (window.location.hostname !== "localhost" && window.location.protocol !== "https:"){
 				window.location.protocol = "https";
 			}
 		</script>
 	</head>
 	<body>
-		<script src="./js/libs/utils.js"></script>
+		<!-- <script src="./js/libs/utils.js"></script> -->
 		<script src="../build/clmtrackr.js"></script>
 		<div id="content">
 			<h2>Facetracking example</h2>
 			<div id="container">
-				<video id="videoel" width="400" height="300" preload="auto" loop playsinline autoplay>
+				<video id="video" width="400" height="300" preload="auto" loop playsinline autoplay>
 				</video>
 				<canvas id="overlay" width="400" height="300"></canvas>
 				<canvas id="drawingPad" width="400" height="300"></canvas>
@@ -39,7 +39,7 @@
 			</div>
 
 		</div>
-		<script src="./js/libs/iniVideo.js"></script>
+		<script src="./js/libs/startVideo.js"></script>
 
 	</body>
 </html>
