@@ -3,6 +3,7 @@ const canvas = document.getElementById('overlay');
 const ctx = canvas.getContext('2d');
 const vid = document.getElementById('video');
 vid.addEventListener('canplay', enablestart, false);
+let pos, yOffset, xOffset, eyelinerPosL, eyelinerPosR,box;
 
 //set up video
 /**
@@ -92,15 +93,15 @@ drawLoop = () => {
     pos = ctrack.getCurrentPosition()
 
     if (pos) {
-    //   setPos();
+      setPos();
     //   Object.keys(applyFcns).forEach(function(key) {
     //     applyFcns[key]();
     //   });
-      // applyEyebrows();
+      applyEyebrows();
       // applyBlush();
       // applyLips();
       // applyEyeliner();
       // applyEyeshadow();
-        ctrack.draw(overlay);
+        // ctrack.draw(overlay);
     }
   }
