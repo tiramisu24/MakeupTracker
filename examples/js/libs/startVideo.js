@@ -1,6 +1,9 @@
 //set up
 const canvas = document.getElementById('overlay');
 const ctx = canvas.getContext('2d');
+const drawingPad = document.getElementById('drawingPad');
+const dctx = drawingPad.getContext('2d');
+
 const vid = document.getElementById('video');
 vid.addEventListener('canplay', enablestart, false);
 let pos, yOffset, xOffset, eyelinerPosL, eyelinerPosR,box;
@@ -90,6 +93,7 @@ startVideo = () => {
 drawLoop = () => {
     requestAnimFrame(drawLoop);
     ctx.clearRect(0, 0, vid.width, vid.height);
+    dctx.clearRect(0, 0, vid.width, vid.height);
     pos = ctrack.getCurrentPosition()
 
     if (pos) {
@@ -97,7 +101,7 @@ drawLoop = () => {
     //   Object.keys(applyFcns).forEach(function(key) {
     //     applyFcns[key]();
     //   });
-      applyEyebrows();
+      applyEyebrows(pos);
       // applyBlush();
       // applyLips();
       // applyEyeliner();

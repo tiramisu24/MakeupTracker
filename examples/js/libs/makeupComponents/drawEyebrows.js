@@ -9,8 +9,10 @@ function setPos(){
 }
 
 // let eyebrowColor;
-function applyEyebrows(){
+function applyEyebrows(pos){
   drawEyebrows(pos.slice(15,19),pos.slice(19,23),canvas, yOffset, xOffset, 'default');
+  drawEyebrows(pos.slice(15,19),pos.slice(19,23),drawingPad, yOffset*5, xOffset*5, 'default');
+
 }
 const drawEyebrows = (pos1, pos2, canvas, yOffset, xOffset, color) => {
     if(color === 'default'){
