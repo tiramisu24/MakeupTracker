@@ -1,15 +1,16 @@
 let applyFcns = {}
-
-function setPos(){
+let xOffset,yOffset;
+function setPos(pos){
     yOffset = Math.floor(Math.sqrt(Math.pow((pos[0][0]-pos[1][0]),2) + Math.pow((pos[0][1] - pos[1][1]),2))/10);
     xOffset = Math.floor(Math.sqrt(Math.pow((pos[6][0]-pos[8][0]),2) + Math.pow((pos[6][1] - pos[8][1]),2))/13);
   
-    eyelinerPosL = (pos.slice(28,32).concat(pos.slice(67,71)).concat([pos[15]]));
-    eyelinerPosR = (pos.slice(23,27).concat(pos.slice(63,67)).concat([pos[19]]));
+    // eyelinerPosL = (pos.slice(28,32).concat(pos.slice(67,71)).concat([pos[15]]));
+    // eyelinerPosR = (pos.slice(23,27).concat(pos.slice(63,67)).concat([pos[19]]));
 }
 
 // let eyebrowColor;
-function applyEyebrows(pos){
+function applyEyebrows(pos,canvas,drawingPad){
+  setPos(pos);
   drawEyebrows(pos.slice(15,19),pos.slice(19,23),canvas, yOffset, xOffset, 'default');
   drawEyebrows(pos.slice(15,19),pos.slice(19,23),drawingPad, yOffset*5, xOffset*5, 'default');
 
@@ -63,3 +64,4 @@ const drawEyebrows = (pos1, pos2, canvas, yOffset, xOffset, color) => {
     ctx.fill();
   };
   
+  export {applyEyebrows};

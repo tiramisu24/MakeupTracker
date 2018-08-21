@@ -1,12 +1,27 @@
+import  { applyEyebrows} from './makeupComponents/drawEyebrows'
 //set up
-const canvas = document.getElementById('overlay');
-const ctx = canvas.getContext('2d');
-const drawingPad = document.getElementById('drawingPad');
-const dctx = drawingPad.getContext('2d');
+var canvas, ctx, drawingPad, dctx, vid;
+var pos, yOffset, xOffset, eyelinerPosL, eyelinerPosR,box;
 
-const vid = document.getElementById('video');
-vid.addEventListener('canplay', enablestart, false);
-let pos, yOffset, xOffset, eyelinerPosL, eyelinerPosR,box;
+var startVideo = function(){
+    vid.play();
+    ctrack.start(vid);
+    // unlockMakeUp();
+    trackingStarted = true;
+
+    drawLoop();
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    canvas = document.getElementById('overlay');
+    ctx = canvas.getContext('2d');
+    drawingPad = document.getElementById('drawingPad');
+    dctx = drawingPad.getContext('2d');  
+    vid = document.getElementById('video');
+    vid.addEventListener('canplay', enablestart, false);
+
+    document.getElementById('startbutton').onclick = startVideo;
+});
 
 //set up video
 /**
@@ -81,31 +96,35 @@ function enablestart() {
     startbutton.disabled = null;
 }
 
-startVideo = () => {
-    vid.play();
-    ctrack.start(vid);
-    // unlockMakeUp();
-    trackingStarted = true;
 
-    drawLoop();
-  }
 
-drawLoop = () => {
+var drawLoop = () => {
     requestAnimFrame(drawLoop);
     ctx.clearRect(0, 0, vid.width, vid.height);
     dctx.clearRect(0, 0, vid.width, vid.height);
     pos = ctrack.getCurrentPosition()
 
     if (pos) {
-      setPos();
+        console.log(pos);
     //   Object.keys(applyFcns).forEach(function(key) {
     //     applyFcns[key]();
     //   });
-      applyEyebrows(pos);
+      applyEyebrows(pos, canvas, drawingPad);
       // applyBlush();
       // applyLips();
       // applyEyeliner();
       // applyEyeshadow();
         // ctrack.draw(overlay);
     }
-  }
+}
+
+// function pouch(){
+//     console.log("meow");
+// }
+
+// // module.exports = {
+// //     pouch: pouch
+// // }
+
+// export default pouch;
+
